@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:ehcache="http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd 
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd 
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd 
+	http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring http://ehcache-spring-annotations.googlecode.com/svn/schema/ehcache-spring/ehcache-spring-1.1.xsd">
+
+	<!-- 组件扫描 -->
+	<context:component-scan base-package="com.forjob" />
+	<!-- 注解扫描 -->
+	<mvc:annotation-driven>
+		<!-- ResponseBody乱码 -->
+        <mvc:message-converters>
+            <bean class="com.forjob.core.common.UTF8StringHttpMessageConverter" />  
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+	<!-- 视图解析器配置 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    	<property name="prefix" value="/jsp/"/>
+    	<property name="suffix" value=".jsp"/>
+    </bean>
+
+	<!-- 使用注解配置事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+	
+    <bean id="dataSource"   class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName"  value="com.mysql.jdbc.Driver"></property>
+		<!-- zhangsiwo.gicp.net:48934 -->
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/forjob"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="000000"></property>
+        <property name="initialSize" value="5"/>
+        <property name="maxIdle" value="10"/>
+        <property name="minIdle" value="5"/>
+        <property name="maxActive" value="15"/>
+        <property name="removeAbandoned"  value="true"/>  
+        <property name="removeAbandonedTimeout" value="180"/>
+        <property name="maxWait" value="1000"/>
+        <property name="timeBetweenEvictionRunsMillis" value="10000"/>
+        <property name="numTestsPerEvictionRun" value="10"/>
+        <property name="minEvictableIdleTimeMillis" value="10000"/>
+    	<property name="validationQuery" value="SELECT 1"/>
+    </bean>
+    
+	<!-- Session 工厂配置 -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" >
+		<property name="dataSource">
+			<ref bean="dataSource"></ref>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.jdbc.batch_size">50</prop>
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+			</props>
+		</property>
+		<!-- ORM [注解] 配置实体包 -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.forjob</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate" >
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"> 
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+    
+	<!-- 登录拦截器 -->
+    <mvc:interceptors>
+    	<mvc:interceptor>
+    		<mvc:mapping path="/**"/>
+    		<bean class="com.forjob.core.interceptor.LoginInterceptor" init-method="init">
+	    		<property name="uncheckUrls">
+					<set>
+                		<value>/.*.pass$</value>
+                		<value>/.*.js$</value>
+                		<value>/.*.css$</value>
+					</set>
+	            </property>
+    		</bean>
+    	</mvc:interceptor>
+    </mvc:interceptors>
+    
+</beans>

@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.for</groupId>
+        <artifactId>for</artifactId>
+        <version>${for.version}</version>
+    </parent>
+
+    <artifactId>for-webadmin</artifactId>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <!--核心包-->
+        <dependency>
+            <groupId>com.for</groupId>
+            <artifactId>for-view</artifactId>
+            <version>${for.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>for-webadmin</finalName>
+    </build>
+</project>

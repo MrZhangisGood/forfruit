@@ -1,0 +1,27 @@
+查询
+1. http://zhangsiwo.gicp.net:44586/JobBa/user/findAll    查询全部的数据 - user为控制层
+
+2. http://zhangsiwo.gicp.net:44586/JobBa/user/findById?id=ff8080814a287572014a3732968c0234
+
+3. http://zhangsiwo.gicp.net:44586/JobBa/user/findByProperty?propertyName=loginName&value=zlm
+
+
+删除 - 删除都为逻辑删除，改isDelete 字段为 1
+1. http://zhangsiwo.gicp.net:44586/JobBa/user/deleteById?id=ff8080814a287572014a3732968c0234
+
+2. http://zhangsiwo.gicp.net:44586/JobBa/user/deleteByIds?uuidsJson={"ff8080814a287572014a3732968c0234","4028bb814c0e340b014c0e3430b60001"}
+
+
+保存
+1. http://zhangsiwo.gicp.net:44586/JobBa/user/save?objJson={"loginName":"zlm","password":"admin"}
+
+
+登陆
+http://zhangsiwo.gicp.net:44586/JobBa/user/login.pass?loginName=admin&password=admin
+
+
+发送短信
+http://zhangsiwo.gicp.net:44586/JobBa/sms/send.pass?phone=18916296573
+
+手机+短信随机码登陆
+http://zhangsiwo.gicp.net:44586/JobBa/user/phoneLogin.pass?phone=18916296573&verifyCode=085723
