@@ -1,9 +1,5 @@
 package com.forjob.server;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
-import java.util.Map;
-
 import com.forjob.core.entity.BaseEntity;
 import com.forjob.core.enums.EErrorEnum;
 import com.forjob.core.exception.ResponseException;
@@ -13,6 +9,10 @@ import com.forjob.core.util.SpringHelper;
 import com.forjob.core.util.TypeConvert;
 import com.forjob.core.util.VerifyTools;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.lang.reflect.ParameterizedType;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: 基础的Service层

@@ -15,6 +15,7 @@
         <module>for-view</module>
         <module>for-webadmin</module>
         <module>for-webapp</module>
+        <module>for-webrapidgen</module>
     </modules>
 
     <!--Eclispe 插件-->

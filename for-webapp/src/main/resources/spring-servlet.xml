@@ -22,7 +22,7 @@
     </mvc:annotation-driven>
 	<!-- 视图解析器配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    	<property name="prefix" value="/jsp/"/>
+    	<property name="prefix" value="/JSP/"/>
     	<property name="suffix" value=".jsp"/>
     </bean>
 
