@@ -1,27 +1,27 @@
-²éÑ¯
-1. http://zhangsiwo.gicp.net:44586/JobBa/user/findAll    ²éÑ¯È«²¿µÄÊı¾İ - userÎª¿ØÖÆ²ã
+æŸ¥è¯¢
+1. http://zhangsiwo.gicp.net:44586/JobBa/user/findAll    æŸ¥è¯¢å…¨éƒ¨çš„æ•°æ® - userä¸ºæ§åˆ¶å±‚
 
 2. http://zhangsiwo.gicp.net:44586/JobBa/user/findById?id=ff8080814a287572014a3732968c0234
 
 3. http://zhangsiwo.gicp.net:44586/JobBa/user/findByProperty?propertyName=loginName&value=zlm
 
 
-É¾³ı - É¾³ı¶¼ÎªÂß¼­É¾³ı£¬¸ÄisDelete ×Ö¶ÎÎª 1
+åˆ é™¤ - åˆ é™¤éƒ½ä¸ºé€»è¾‘åˆ é™¤ï¼Œæ”¹isDelete å­—æ®µä¸º 1
 1. http://zhangsiwo.gicp.net:44586/JobBa/user/deleteById?id=ff8080814a287572014a3732968c0234
 
 2. http://zhangsiwo.gicp.net:44586/JobBa/user/deleteByIds?uuidsJson={"ff8080814a287572014a3732968c0234","4028bb814c0e340b014c0e3430b60001"}
 
 
-±£´æ
+ä¿å­˜
 1. http://zhangsiwo.gicp.net:44586/JobBa/user/save?objJson={"loginName":"zlm","password":"admin"}
 
 
-µÇÂ½
+ç™»é™†
 http://zhangsiwo.gicp.net:44586/JobBa/user/login.pass?loginName=admin&password=admin
 
 
-·¢ËÍ¶ÌĞÅ
+å‘é€çŸ­ä¿¡
 http://zhangsiwo.gicp.net:44586/JobBa/sms/send.pass?phone=18916296573
 
-ÊÖ»ú+¶ÌĞÅËæ»úÂëµÇÂ½
+æ‰‹æœº+çŸ­ä¿¡éšæœºç ç™»é™†
 http://zhangsiwo.gicp.net:44586/JobBa/user/phoneLogin.pass?phone=18916296573&verifyCode=085723
