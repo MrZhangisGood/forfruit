@@ -19,6 +19,19 @@
     </content>
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
     <orderEntry type="module" module-name="for-view" />
     <orderEntry type="module" module-name="for-server" />
     <orderEntry type="module" module-name="for-core" />
@@ -73,21 +86,9 @@
     <orderEntry type="library" name="Maven: com.fasterxml:jackson-module-hibernate:0.7.0" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.8.5" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.jackson:jackson-core-asl:1.8.5" level="project" />
+    <orderEntry type="library" name="Maven: com.cloopen:cloopen.sms:2.6.3.RELEASE" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1-b02" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:jsp-api:2.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:servlet-api:2.4" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/lib" />
-        </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" type="SOURCES" />
-      </library>
-    </orderEntry>
   </component>
 </module>

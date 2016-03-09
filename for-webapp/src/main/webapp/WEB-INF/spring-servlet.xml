@@ -14,15 +14,10 @@
 	<!-- 组件扫描 -->
 	<context:component-scan base-package="com.forjob" />
 	<!-- 注解扫描 -->
-	<mvc:annotation-driven>
-		<!-- ResponseBody乱码 -->
-        <mvc:message-converters>
-            <bean class="com.forjob.core.common.UTF8StringHttpMessageConverter" />  
-        </mvc:message-converters>
-    </mvc:annotation-driven>
+	<mvc:annotation-driven />
 	<!-- 视图解析器配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    	<property name="prefix" value="/JSP/"/>
+    	<property name="prefix" value="/jsp/"/>
     	<property name="suffix" value=".jsp"/>
     </bean>
 
@@ -32,7 +27,7 @@
     <bean id="dataSource"   class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName"  value="com.mysql.jdbc.Driver"></property>
 		<!-- zhangsiwo.gicp.net:48934 -->
-        <property name="url" value="jdbc:mysql://127.0.0.1:3306/forjob"></property>
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/forfruit"></property>
         <property name="username" value="root"></property>
         <property name="password" value="000000"></property>
         <property name="initialSize" value="5"/>

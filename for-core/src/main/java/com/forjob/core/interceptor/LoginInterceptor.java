@@ -1,21 +1,19 @@
 package com.forjob.core.interceptor;
 
+import com.forjob.core.enums.EErrorEnum;
+import com.forjob.core.response.ResponseMsg;
+import com.forjob.core.util.JsonUtil;
+import org.apache.log4j.Logger;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.log4j.Logger;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.forjob.core.enums.EErrorEnum;
-import com.forjob.core.response.ResponseMsg;
-import com.forjob.core.util.JsonUtil;
 
 /** 
  * @Description: 登录的拦截器
@@ -59,6 +57,8 @@ public class LoginInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
+        //TODO TEST
+        Object objJson = request.getParameter("objJson");
         // 是否登陆拦截
         Object user = request.getSession(true).getAttribute(SESSIN_USER_KEY);
         if(user == null){

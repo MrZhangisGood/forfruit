@@ -83,6 +83,25 @@
 		<for.version>0.5.SNAPSHOT</for.version>
     </properties>
 
+    <!--Maven仓库-->
+    <repositories>
+        <repository>
+            <id>github maven repository</id>
+            <url>https://raw.githubusercontent.com/xiaoGee/maven.m2/master/repository</url>
+        </repository>
+    </repositories>
+    <!--<pluginRepositories>
+        <pluginRepository>
+            <id>github maven repository</id>
+            <url>https://raw.githubusercontent.com/xiaoGee/maven.m2/master/repository</url>
+        </pluginRepository>
+        <pluginRepository>
+            <name>oss.sonatype.org</name>
+            <id>oss.sonatype.org</id>
+            <url>http://oss.sonatype.org/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>-->
+
 </project>
 
 
