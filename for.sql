@@ -1,53 +1,49 @@
-SET SESSION FOREIGN_KEY_CHECKS=0;
+use forfruit;
+/*
+Navicat MySQL Data Transfer
 
-/* Drop Tables */
+Source Server         : localhost
+Source Server Version : 50022
+Source Host           : localhost:3306
+Source Database       : forfruit
 
-DROP TABLE IF EXISTS CUS_USER;
+Target Server Type    : MYSQL
+Target Server Version : 50022
+File Encoding         : 65001
 
+Date: 2016-03-11 22:27:49
+*/
 
+SET FOREIGN_KEY_CHECKS=0;
 
+-- ----------------------------
+-- Table structure for `cus_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `cus_user`;
+CREATE TABLE `cus_user` (
+	`USER_ID` char(32) NOT NULL COMMENT '用户id',
+	`USER_NO` int(8) unsigned zerofill NOT NULL auto_increment COMMENT '用户编码',
+	`LOGIN_NAME` varchar(50) default NULL COMMENT '用户名称',
+	`PASSWORD` char(32) default NULL COMMENT '密码',
+	`USER_NAME` varchar(50) default NULL COMMENT '用户名称',
+	`SEX` int(1) default '0' COMMENT '性别',
+	`HEAD_IMAGE_URL` varchar(80) default NULL COMMENT '用户头像',
+	`PHONE` varchar(15) default NULL COMMENT '手机号码',
+	`PHONE_VERIFY` int(1) default '0' COMMENT '手机号码是否已经验证 0验证不通过  1验证通过',
+	`EMAIL` varchar(30) default NULL COMMENT '邮箱',
+	`EMAIL_VERIFY` int(1) default '0' COMMENT '0 未通过  1 通过',
+	`QQ` int(11) default NULL COMMENT 'qq号码',
+	`INTEGRAL` bigint(20) default NULL COMMENT '积分',
+	`REMARK` varchar(300) default NULL COMMENT '备注',
+	`IS_DELETE` int(1) default '0' COMMENT '是否删除 - 采用逻辑删除',
+	`CREATE_DATE` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT '创建时间',
+	`UPDATE_DATE` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP COMMENT '修改时间',
+	PRIMARY KEY  (`USER_ID`),
+	UNIQUE KEY `USER_NO` (`USER_NO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/* Create Tables */
-
-CREATE TABLE CUS_USER
-(
-	-- 用户id
-	USER_ID char(32) NOT NULL COMMENT '用户id',
-	-- 用户编码
-	USER_NO int(8) DEFAULT 10000001 NOT NULL COMMENT '用户编码',
-	-- 用户名称
-	LOGIN_NAME varchar(50) COMMENT '用户名称',
-	-- 密码
-	PASSWORD char(32) COMMENT '密码',
-	-- 用户名称
-	USER_NAME varchar(50) COMMENT '用户名称',
-	-- 性别
-	SEX int(1) DEFAULT 0 COMMENT '性别',
-	-- 用户头像
-	HEAD_IMAGE_URL varchar(80) COMMENT '用户头像',
-	-- 手机号码
-	PHONE varchar(15) COMMENT '手机号码',
-	-- 手机号码是否已经验证 0验证不通过  1验证通过
-	PHONE_VERIFY int(1) DEFAULT 0 COMMENT '手机号码是否已经验证 0验证不通过  1验证通过',
-	-- 邮箱
-	EMAIL varchar(30) COMMENT '邮箱',
-	-- 0 未通过  1 通过
-	EMAIL_VERIFY int(1) DEFAULT 0 COMMENT '0 未通过  1 通过',
-	-- qq号码
-	QQ int(11) COMMENT 'qq号码',
-	-- 积分
-	INTEGRAL bigint COMMENT '积分',
-	-- 备注
-	REMARK varchar(300) COMMENT '备注',
-	-- 是否删除 - 采用逻辑删除
-	IS_DELETE int(1) DEFAULT 0 COMMENT '是否删除 - 采用逻辑删除',
-	-- 创建时间
-	CREATE_DATE timestamp COMMENT '创建时间',
-	-- 修改时间
-	UPDATE_DATE timestamp COMMENT '修改时间',
-	PRIMARY KEY (USER_ID),
-	UNIQUE (USER_NO)
-) DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-
-
+-- ----------------------------
+-- Records of cus_user
+-- ----------------------------
+INSERT INTO `cus_user` VALUES ('402881e6535944e501535948dd600003', '00000001', 'zlm', '21232f297a57a5a743894a0e4a801fc3', null, '0', null, null, '0', null, '0', null, null, null, '0', '2016-03-09 10:51:00', '2016-03-09 10:51:00');
+INSERT INTO `cus_user` VALUES ('402881e6535a1ddb01535a20765c0002', '00000002', 'xiao', '21232f297a57a5a743894a0e4a801fc3', null, '0', null, null, '0', null, '0', null, null, null, '0', '2016-03-09 14:46:29', '2016-03-09 14:46:29');
