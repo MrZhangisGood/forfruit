@@ -1,5 +1,10 @@
 package com.forjob.server;
 
+import com.forjob.core.entity.BaseEntity;
+import com.forjob.core.exception.ResponseException;
+import com.forjob.core.response.ResponseMsg;
+import com.forjob.core.util.JsonUtil;
+import com.forjob.core.util.LoggerTools;
 import com.forjob.core.util.SpringHelper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,17 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.forjob.core.entity.BaseEntity;
-import com.forjob.core.exception.ResponseException;
-import com.forjob.core.response.ResponseMsg;
-import com.forjob.core.util.JsonUtil;
-import com.forjob.core.util.LoggerTools;
-
+import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public abstract class BaseController<T extends BaseEntity> {
@@ -70,10 +67,13 @@ public abstract class BaseController<T extends BaseEntity> {
         return JsonUtil.object2Json(response);
     }
 
-    /*************** 获取BaseService */
-    //public abstract BaseService<T> getBaseService();
-
-    /*************** 保存操作 ***/
+    /**
+     * ************* 保存操作 ***
+     * @author zhanglm@joyplus.com.cn
+     *
+     *
+     *
+     */
     @RequestMapping("save")
     @ResponseBody
     public String save(String objJson) throws Exception{
@@ -87,13 +87,22 @@ public abstract class BaseController<T extends BaseEntity> {
         return JsonUtil.object2Json(result);
     }
 
-    /*************** 删除操作 ***/
+    /**
+     * ************* 删除操作 **
+     * @author zhanglm@joyplus.com.cn
+     *
+     *
+     *
+     *
+     *
+     */
     @RequestMapping("deleteById")
     @ResponseBody
     public String deleteById(String id) {
         Object result = this.getBaseService().deleteById(id);
         return JsonUtil.object2Json(result);
     }
+
     @RequestMapping("deleteAll")
     @ResponseBody
     public String deleteByIds(String uuidsJson) {
@@ -102,7 +111,15 @@ public abstract class BaseController<T extends BaseEntity> {
         return JsonUtil.object2Json(result);
     }
 
-    /*************** 查询操作 ***/
+    /**
+     * ************* 查询操作 **
+     * @author zhanglm@joyplus.com.cn
+     *
+     *
+     *
+     *
+     *
+     */
     @RequestMapping("findAll")
     @ResponseBody
     public String findAll() {
@@ -115,10 +132,20 @@ public abstract class BaseController<T extends BaseEntity> {
         T obj = this.getBaseService().findById(id);
         return JsonUtil.object2Json(obj);
     }
-    @RequestMapping("findByProperty")
+    @RequestMapping("findByField")
     @ResponseBody
-    public String findByProperty(String[] propertyName, Object[] value) {
-        List<T> list = this.getBaseService().findByProperty(propertyName, value);
+    public String findByField(HttpServletRequest request) {
+        Enumeration<String> paraNames=request.getParameterNames();
+
+        List<Object> fieldNames = new ArrayList<Object>();
+        List<Object> values = new ArrayList<Object>();
+        for(Enumeration e = paraNames; e.hasMoreElements();){
+            String thisName = e.nextElement().toString();
+            String thisValue = request.getParameter(thisName);
+            fieldNames.add(thisName);
+            values.add(thisValue);
+        }
+        List<T> list = this.getBaseService().findByField(fieldNames.toArray(), values.toArray());
         return JsonUtil.object2Json(list);
     }
 

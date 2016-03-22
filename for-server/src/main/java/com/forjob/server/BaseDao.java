@@ -1,9 +1,6 @@
 package com.forjob.server;
 
-import java.lang.reflect.ParameterizedType;
-import java.sql.SQLException;
-import java.util.List;
-
+import com.forjob.core.entity.BaseEntity;
 import com.forjob.core.enums.EBaseEntity;
 import com.forjob.core.util.TypeConvert;
 import com.forjob.core.util.VerifyTools;
@@ -17,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.forjob.core.entity.BaseEntity;
+import java.lang.reflect.ParameterizedType;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @Description: 基础DAO
@@ -46,7 +45,15 @@ public class BaseDao<T extends BaseEntity>{
         return this.objectClass;
     }
 
-    /*************** 增加，修改操作 ***/
+    /**
+     * ************* 增加，修改操作 **
+     * @author zhanglm@joyplus.com.cn
+     *
+     *
+     *
+     *
+     *
+     */
     public T saveOrUpdate(final T object) {
         this.hibernateTemplate.saveOrUpdate(object);
         return object;
@@ -55,7 +62,15 @@ public class BaseDao<T extends BaseEntity>{
         this.hibernateTemplate.saveOrUpdateAll(list);
     }
 
-    /*************** 删除操作 ***/
+    /**
+     * ************* 删除操作 **
+     * @author zhanglm@joyplus.com.cn
+     *
+     *
+     *
+     *
+     *
+     */
     public boolean deleteById(String id) {
         try {
             T object = this.hibernateTemplate.get(this.getObjectClass(), id);
@@ -93,16 +108,24 @@ public class BaseDao<T extends BaseEntity>{
         return TypeConvert.toInt(updateRow) > 0;
     }
 
-    /*************** 查询操作 ***/
+    /*
+    * ************** 查询操作 **
+    * @author zhanglm@joyplus.com.cn
+    *
+    *
+    *
+    *
+    *
+    */
     public T findById(String id) {
         T object = this.hibernateTemplate.get(this.getObjectClass(), id);
         return object;
     }
-    public List<T> findByProperty(String[] propertyName , Object[] value){
+    public List<T> findByField(Object[] fieldNames , Object[] values){
         DetachedCriteria detachedCriteria = DetachedCriteria.forClass(this.getObjectClass());
-        for (int i = 0; i < value.length; i++) {
-            if(!VerifyTools.isEmpty(value[i])){
-                detachedCriteria.add(Restrictions.eq(propertyName[i], value[i]));
+        for (int i = 0; i < values.length; i++) {
+            if(!VerifyTools.isEmpty(values[i])){
+                detachedCriteria.add(Restrictions.eq(TypeConvert.toStr(fieldNames[i]), values[i]));
             }
         }
         detachedCriteria.add(Restrictions.eq("isDelete", EBaseEntity.USE.ordinal()));

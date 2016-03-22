@@ -56,7 +56,7 @@ public class UserService extends BaseService<UserEntity> {
         if(VerifyTools.isEmpty(loginName) && VerifyTools.isEmpty(password)){
             return null;
         }
-        List<UserEntity> users = userDao.findByProperty(new String[]{"loginName", "password"}, new Object[]{loginName, MD5Helper.MD5Encode(password)});
+        List<UserEntity> users = userDao.findByField(new String[]{"loginName", "password"}, new Object[]{loginName, MD5Helper.MD5Encode(password)});
         if(users != null && users.size() > 0){
             session.setAttribute(LoginInterceptor.SESSIN_USER_KEY, users.get(0));
             return users.get(0);
@@ -72,7 +72,7 @@ public class UserService extends BaseService<UserEntity> {
      */
     public UserEntity getLoginByPhone(HttpSession session, String phone) {
         //登陆
-        List<UserEntity> users = userDao.findByProperty(new String[]{"phone"}, new Object[]{phone});
+        List<UserEntity> users = userDao.findByField(new String[]{"phone"}, new Object[]{phone});
         if(users != null && users.size() > 0){
             session.setAttribute(LoginInterceptor.SESSIN_USER_KEY, users.get(0));
             return users.get(0);
