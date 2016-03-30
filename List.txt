@@ -1,0 +1,5 @@
+1. Redis
+2. RabbitMQ
+3. Solr
+4. 生成数据库
+5. 生成对象

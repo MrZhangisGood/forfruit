@@ -40,7 +40,7 @@ public class BaseService<T extends BaseEntity> {
     }
 
     /**
-     * ************* 增加，修改操作  **
+     * ************* 增加，修改操作  **************************
      * @author zhanglm@joyplus.com.cn
      *
      *
@@ -48,7 +48,7 @@ public class BaseService<T extends BaseEntity> {
      *
      *
      *
-     */
+     **********************************************************/
     public ResponseMsg save(Map<String, Object> map) throws Exception {
         String uuid = TypeConvert.toStr(map.get("uuid"));
         T obj = null;
@@ -66,22 +66,22 @@ public class BaseService<T extends BaseEntity> {
             }
         }
         //TODO 测试事务
-//        Integer i = 1;
-//        if(i == 1){
-//            throw new ResponseException(EErrorEnum.COMMON_SAVE_FAIL);
-//        }
+        /*Integer i = 1;
+        if(i == 1){
+            throw new ResponseException(EErrorEnum.COMMON_SAVE_FAIL);
+        }*/
         return new ResponseMsg().success("保存成功", obj);
     }
 
     /**
-     * ************* 删除操作 **
+     * ************* 删除操作 *********************************
      * @author zhanglm@joyplus.com.cn
      *
      *
      *
      *
      *
-     */
+     **********************************************************/
     public ResponseMsg deleteById(String id) {
         if(this.getBaseDao().deleteById(id)) {
             return new ResponseMsg().success("删除成功", null);
@@ -95,14 +95,14 @@ public class BaseService<T extends BaseEntity> {
         throw new ResponseException(EErrorEnum.COMMON_DELETE_FAIL);
     }
 
-    /**
+    /**********************************************************
      * ************* 查询操作 **
      * @author zhanglm@joyplus.com.cn
      *
      *
      *
      *
-     */
+     *********************************************************/
     public List<T> findAll() {
         return this.getBaseDao().findAll();
     }
