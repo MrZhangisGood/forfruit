@@ -108,6 +108,7 @@ public class BaseDao<T extends BaseEntity>{
         return TypeConvert.toInt(updateRow) > 0;
     }
 
+
     /*
     * ************** 查询操作 **
     * @author zhanglm@joyplus.com.cn

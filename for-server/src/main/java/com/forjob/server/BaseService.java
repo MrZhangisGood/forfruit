@@ -109,6 +109,12 @@ public class BaseService<T extends BaseEntity> {
     public T findById(String id) {
         return this.getBaseDao().findById(id);
     }
+
+    /**
+     * @author zhanglm@joyplus.com.cn
+     * @example  findByField(new Object[]{"name", "age"}, new Object[]{"zhanglm", "27"})
+     * @return
+     */
     public List<T> findByField(Object[] fieldNames, Object[] values) {
         return this.getBaseDao().findByField(fieldNames, values);
     }

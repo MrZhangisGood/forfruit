@@ -12,6 +12,7 @@
     <modules>
         <module>for-core</module>
         <module>for-server</module>
+        <module>for-trigger</module>
         <module>for-view</module>
         <module>for-webadmin</module>
         <module>for-webapp</module>

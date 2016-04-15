@@ -14,6 +14,9 @@ public class RedisTool {
 
     private static final Logger logger = Logger.getLogger(RedisTool.class);
 
+    public static int SECOND_60 = 60;
+    public static int SECOND_DEFAULT = 180;
+
 	private static JedisPool pool = null;
 
 	/**
@@ -87,6 +90,31 @@ public class RedisTool {
 	 * 缓存
      * @author zhanglm@joyplus.com.cn
 	 * @param key
+     * @param timeout   失效时间，秒单位
+	 * @return
+	 */
+	public static void set(String key, String value, int timeout){
+		JedisPool pool = null;
+		Jedis jedis = null;
+		try {
+			pool = getPool();
+			jedis = pool.getResource();
+			jedis.set(key, value,"NX","PX", timeout);
+            jedis.setex(key, timeout, value);
+		} catch (Exception e) {
+			//释放redis对象
+			pool.returnBrokenResource(jedis);
+			e.printStackTrace();
+		} finally {
+			//返还到连接池
+			returnResource(pool, jedis);
+		}
+	}
+
+	/**
+	 * 缓存
+     * @author zhanglm@joyplus.com.cn
+	 * @param key
 	 * @return
 	 */
 	public static void set(String key, String value){
@@ -136,6 +164,31 @@ public class RedisTool {
 	 * 缓存
      * @author zhanglm@joyplus.com.cn
 	 * @param key
+	 * @param value
+	 * @param timeout   失效时间，秒单位
+	 * @return
+	 */
+	public static void setObject(String key, Object value, int timeout){
+		JedisPool pool = null;
+		Jedis jedis = null;
+		try {
+			pool = getPool();
+			jedis = pool.getResource();
+			jedis.setex(key, timeout, JsonUtil.object2Json(value));
+		} catch (Exception e) {
+			//释放redis对象
+			pool.returnBrokenResource(jedis);
+			e.printStackTrace();
+		} finally {
+			//返还到连接池
+			returnResource(pool, jedis);
+		}
+	}
+	/**
+	 * 缓存
+     * @author zhanglm@joyplus.com.cn
+	 * @param key
+	 * @param value
 	 * @return
 	 */
 	public static void setObject(String key, Object value){
@@ -145,7 +198,6 @@ public class RedisTool {
 			pool = getPool();
 			jedis = pool.getResource();
 			jedis.set(key, JsonUtil.object2Json(value));
-            jedis.set()
 		} catch (Exception e) {
 			//释放redis对象
 			pool.returnBrokenResource(jedis);
@@ -164,7 +216,15 @@ public class RedisTool {
     /********************************************************************/
     public static void main(String[] args){
         System.out.println("/**************************.TEST START");
-        Jedis jedis = RedisTool.getPool().getResource();
+        //TIMEOUT
+        RedisTool.set("KEY.TIMEOUT.STRING", "My name is zhanglm.", RedisTool.SECOND_DEFAULT);
+        try {
+            Thread.sleep(10000L);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        RedisTool.get("KEY.TIMEOUT.STRING");
+
         //TEST String
         RedisTool.set("KEY.STRING", "My name is zhanglm,I'm a boy. I love my girlfriend,She is a beautiful girl,She name is Huangfl.");
         //TEST Map
@@ -201,6 +261,7 @@ public class RedisTool {
                 System.out.println("getList:"+obj);
             }
         }
+
 
         System.out.println("/**************************.TEST END");
     }

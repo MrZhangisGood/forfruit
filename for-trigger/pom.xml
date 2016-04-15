@@ -1,4 +1,4 @@
-﻿<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -8,24 +8,23 @@
         <version>${for.version}</version>
     </parent>
 
-    <artifactId>for-webapp</artifactId>
-    <packaging>war</packaging>
+    <artifactId>for-trigger</artifactId>
 
     <dependencies>
-        <!--调度器包-->
-        <dependency>
-            <groupId>com.for</groupId>
-            <artifactId>for-trigger</artifactId>
-            <version>${for.version}</version>
-        </dependency>
+
         <!--核心包-->
         <dependency>
             <groupId>com.for</groupId>
-            <artifactId>for-view</artifactId>
+            <artifactId>for-server</artifactId>
             <version>${for.version}</version>
         </dependency>
+
+        <!--调度器jar-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>1.8.5</version>
+        </dependency>
     </dependencies>
-    <build>
-        <finalName>for-webapp</finalName>
-    </build>
+
 </project>

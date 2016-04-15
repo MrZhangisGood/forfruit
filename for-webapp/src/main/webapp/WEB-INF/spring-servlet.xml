@@ -78,6 +78,35 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"> 
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+
+	<!-- 调度器 -->
+	<bean name="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
+		<property name="configLocation" value="classpath:quartz.properties" />
+		<property name="triggers">
+			<list>
+				<ref bean="forTrigger" />
+			</list>
+		</property>
+	</bean>
+	<!--<bean name="forTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerBean" p:jobDetail-ref="forJob" p:startDelay="10000" p:repeatInterval="6000000"/>-->
+	<!--<bean name="forTrigger" class="com.forjob.trigger.quartz.PersistableCronTriggerFactoryBean" p:jobDetail-ref="forJob" p:cronExpression="0 0 2 * * ?"/>-->
+	<!--<bean name="forJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean" p:targetObject-ref="forTest" p:targetMethod="start"></bean>-->
+	<!--<bean name="forTest" class="com.forjob.trigger.job.TestTrigger"></bean>-->
+
+	<bean name="forJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.forjob.trigger.job.TestJob" />
+		<property name="group" value="for" />
+		<property name="durability" value="true" />
+		<property name="requestsRecovery" value="true" />
+	</bean>
+	<bean id="forTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="forJob" />
+		<property name="cronExpression" value="0 27 17 * * ?" />
+	</bean>
     
 	<!-- 登录拦截器 -->
     <mvc:interceptors>
