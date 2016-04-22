@@ -11,13 +11,15 @@
     
     <modules>
         <module>for-core</module>
+        <module>for-redis</module>
+        <module>for-rabbitmq</module>
         <module>for-server</module>
         <module>for-trigger</module>
         <module>for-view</module>
         <module>for-webadmin</module>
         <module>for-webapp</module>
-        <module>for-webrapidgen</module>
         <module>for-website</module>
+        <!--<module>for-webrapidgen</module>-->
     </modules>
 
     <!--Eclispe 插件-->

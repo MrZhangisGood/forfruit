@@ -50,6 +50,11 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,  Object arg) throws Exception {
+        //TODO TEST
+        if (1==1){
+            return true;
+        }
+
         // 无需拦截 配置 的URI
         for (int i = 0; i < patterns.size(); i++) {
             Matcher matcher = patterns.get(i).matcher(request.getRequestURI());
@@ -57,8 +62,6 @@ public class LoginInterceptor implements HandlerInterceptor {
                 return true;
             }
         }
-        //TODO TEST
-        Object objJson = request.getParameter("objJson");
         // 是否登陆拦截
         Object user = request.getSession(true).getAttribute(SESSIN_USER_KEY);
         if(user == null){

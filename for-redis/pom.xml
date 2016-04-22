@@ -10,7 +10,7 @@
         <version>${for.version}</version>
     </parent>
 
-    <artifactId>for-server</artifactId>
+    <artifactId>for-redis</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,16 +18,14 @@
             <artifactId>for-core</artifactId>
             <version>${for.version}</version>
         </dependency>
+
+        <!--Jedis -->
         <dependency>
-            <groupId>com.for</groupId>
-            <artifactId>for-redis</artifactId>
-            <version>${for.version}</version>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.2.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.for</groupId>
-            <artifactId>for-rabbitmq</artifactId>
-            <version>${for.version}</version>
-        </dependency>
+        
 	</dependencies>
 
 </project>

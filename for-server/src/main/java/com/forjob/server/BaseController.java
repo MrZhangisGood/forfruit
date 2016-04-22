@@ -4,12 +4,10 @@ import com.forjob.core.entity.BaseEntity;
 import com.forjob.core.exception.ResponseException;
 import com.forjob.core.response.ResponseMsg;
 import com.forjob.core.util.JsonUtil;
-import com.forjob.core.util.LoggerTools;
 import com.forjob.core.util.SpringHelper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,9 +28,9 @@ public abstract class BaseController<T extends BaseEntity> {
      * @author zhanglm@joyplus.com.cn
      * @return
      */
-    @ModelAttribute
-    public void before(){
-    }
+    //@ModelAttribute
+    //public void before(){
+    //}
 
     private BaseService<T> baseService;
 
@@ -62,7 +60,7 @@ public abstract class BaseController<T extends BaseEntity> {
             logger.info(res.getErrorEnum().getMsg());
         }else{
             response = new ResponseMsg(false, null, e.getMessage(), null);
-            LoggerTools.print(logger, e);
+            logger.error(e);
         }
         return JsonUtil.object2Json(response);
     }
@@ -145,7 +143,9 @@ public abstract class BaseController<T extends BaseEntity> {
             fieldNames.add(thisName);
             values.add(thisValue);
         }
-        List<T> list = this.getBaseService().findByField(fieldNames.toArray(), values.toArray());
+        //TODO TEST
+        List<T> list = null;
+        //List<T> list = this.getBaseService().findByField(fieldNames.toArray(), values.toArray());
         return JsonUtil.object2Json(list);
     }
 

@@ -10,7 +10,7 @@
         <version>${for.version}</version>
     </parent>
 
-    <artifactId>for-server</artifactId>
+    <artifactId>for-rabbitmq</artifactId>
 
     <dependencies>
         <dependency>
@@ -18,16 +18,13 @@
             <artifactId>for-core</artifactId>
             <version>${for.version}</version>
         </dependency>
+
         <dependency>
-            <groupId>com.for</groupId>
-            <artifactId>for-redis</artifactId>
-            <version>${for.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.for</groupId>
-            <artifactId>for-rabbitmq</artifactId>
-            <version>${for.version}</version>
-        </dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+			<version>3.6.1</version>
+		</dependency>
+
 	</dependencies>
 
 </project>

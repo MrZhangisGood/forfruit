@@ -9,6 +9,9 @@
 package com.forjob.trigger.job;
 
 import org.apache.log4j.Logger;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.springframework.scheduling.quartz.QuartzJobBean;
 
 /**
  * @Description: 定时器
@@ -16,13 +19,14 @@ import org.apache.log4j.Logger;
  * @date 2016年4月15日 下午3:15:52
  * @version 1.0
  */
-public class TestTrigger {
+public class TestJob2 extends QuartzJobBean {
 
-    protected static final Logger logger = Logger.getLogger(TestTrigger.class);
+    protected static final Logger logger = Logger.getLogger(TestJob2.class);
 
-    protected void start() {
+    @Override
+    protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         try{
-            logger.debug("[---]TestTrigger start");
+            logger.debug("[---]TestJob2 start");
         }catch(Exception e){
             e.printStackTrace();
             logger.error(e);
